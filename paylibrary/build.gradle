@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.kezong.fat-aar'
 
 android {
     compileSdkVersion 27
@@ -22,25 +21,24 @@ android {
     repositories {
 
         // 添加下面的内容
-        flatDir {
-            dirs 'libs'
-        }
+//        flatDir {
+//            dirs 'libs'
+//        }
 
         // ... jcenter() 等其他仓库
     }
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    api fileTree(dir: 'libs', include: ['*.jar'])
 //    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     testImplementation 'junit:junit:4.12'
 
-    implementation(name: 'alipaySdk-15.6.2', ext: 'aar')
+//    implementation(name: 'alipaySdk-15.6.2', ext: 'aar')
+    api files('libs/alipaySdk-15.6.2.aar')
 //    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'//changed to without mta
-
-    embed(name: 'alipaySdk-15.6.2', ext: 'aar'){ transitive = true}
 }
 
 //---------------------------------------------
